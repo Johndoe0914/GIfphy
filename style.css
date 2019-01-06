@@ -1,0 +1,26 @@
+html,body{
+    background-color: black;
+    border-style: dotted;
+    border-color:greenyellow;
+    width: 100%;
+    height: 100%;
+
+}
+
+.searchImage{
+    border-color: red;
+}
+#buttons{
+    cursor: pointer;
+    background-color: red;
+    border-spacing: 50px;
+
+
+}
+img:hover{
+cursor: pointer;
+background-color: blue
+}
+p{
+    color: yellow;
+}

@@ -1,19 +1,21 @@
-var topics = ["Drifting", 'SkateBoarding', "SnowBoarding"];
+var topics = ["Drifting", 'SkateBoarding', "SnowBoarding", "hrllo"];
 
 function renderbuttons(){
-    $("#buttons").empty();
+    $("#button-container").empty();
     for(var i = 0; i < topics.length; i++){
     var a = $("<button>|");
-    a.text(topics[i]);
-    
-    $("#buttons").append(a);
+    a.text(topics[i]).id = "button" ;
+
+    console.log(a)
+    $("#button-container").append(a);
     
     }
 };
 
 
-$("#buttons").on("click",function(){
-var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + topics +  "&api_key=63gJUa5SGQTZGYebghd1yJXqkjoU4bzO&limit=5";
+$("#button-container").on("click",function(e){
+    console.log(e.target.innerText)
+var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + e.target.innerText +  "&api_key=63gJUa5SGQTZGYebghd1yJXqkjoU4bzO&limit=4";
  
 $.ajax({
     url: queryUrl,
@@ -37,7 +39,9 @@ $.ajax({
        GifImage.addClass('searchImage')
        newDiv.append(p);
        newDiv.append(GifImage);
-       $("#Gif-here").prepend(newDiv);
+       console.log(newDiv)
+       
+       $("#Gif-here").append(newDiv);
       
    }
 });
@@ -59,8 +63,13 @@ $(document).on("click", '.searchImage', function(){
 $("#user-submit").on("click", function(event){
     event.preventDefault();
     var topic = $("#user-text").val().trim();
-    topics.push(topic);
-    renderbuttons();
+    if (topic !== "") {
+        topics.push(topic);
+        renderbuttons();
+    } else {
+        alert("Input something to search for")
+    }
+    
 });
 renderbuttons();
 
